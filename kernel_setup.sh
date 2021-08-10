@@ -31,3 +31,4 @@ clone_ak
 
 # Run build script
 . ${CURRENT_DIR}/kernel_build.sh
+

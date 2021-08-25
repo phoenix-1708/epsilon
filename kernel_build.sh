@@ -13,8 +13,8 @@ LOG="$HOME/log.txt"
 ARCH="arm64"
 SUBARCH="arm64"
 export ARCH SUBARCH
-export KBUILD_BUILD_USER=phoenix-1708
-export KBUILD_BUILD_HOST=ubuntu
+export KBUILD_BUILD_USER=Harikumar
+export KBUILD_BUILD_HOST=linux
 
 KERNEL_IMG=$KERNEL_DIR/out/arch/$ARCH/boot/Image.gz
 KERNEL_DTBO=$KERNEL_DIR/out/arch/$ARCH/boot/dtbo.img

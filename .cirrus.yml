@@ -49,7 +49,7 @@ task:
       - ccache -M 20G
       - ccache -o compression=true
       - ccache -z
-      - bash kernel_setup.sh
+      - ./kernel_setup.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Completed!"
       - echo "============================"
       - echo "Build Completed!"

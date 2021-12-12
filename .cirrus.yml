@@ -1,0 +1,57 @@
+env:
+    rcloneconfig: "ENCRYPTED[ace096f4adf51659c3859970c0a6c4db796b579382ebf7705ba65181d1ca386af504de434f8b96cd53dccfdaa9c89b35]"
+    tokentl: "ENCRYPTED[751f726f1a507fcf6e82aaa8669817c611ddfe9dc2519ec974d69a00a3549c06bad682187cd290e404283d2f84719c3b]"
+    idtl: "ENCRYPTED[1592b702cd85962e8ef580d61590dfa2a951b599edbe431245727deed709c61d6a1bef16bfd7072d5e3a16df3ffc1eb2]"
+
+task:
+  name: "Setting Up, Syncing, Building and Uploading..."
+  timeout_in: 480m  
+  container:
+      image: inok2341/anu:latest
+      cpu: 8
+      memory: 32G
+        
+  Build-Env-Setup_background_script:
+       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Setup Build"
+       - export DEBIAN_FRONTEND=noninteractive
+       - apt update
+       - apt install sudo
+       - DEBIAN_FRONTEND=noninteractive
+       - sudo apt install python3 -y
+       - sudo ln -sf /usr/bin/python3 /usr/bin/python
+       - git config --global user.name "phoenix-1708"
+       - git config --global user.email "harikumar1708@gmail.com"
+       - git config --global color.ui true
+  
+  Storage-Checker_background_script:
+      - df -h
+      - lsblk
+      - ls -l -a -h
+  
+  Another-update_script:
+      - echo "============================"
+      - echo "Updating..."
+      - echo "============================"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start sync Source"
+      - sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y install git gh bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev openssl rsync flex bison gcc-aarch64-linux-gnu
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
+      - echo "============================"
+      - echo "Update Completed!"
+      - echo "============================"
+
+  Build_script:
+      - echo "============================"
+      - echo "Starting the Build..."
+      - echo "============================"
+      - cd /tmp/rom
+      - export CCACHE_DIR=/tmp/ccache
+      - export CCACHE_EXEC=$(which ccache)
+      - export USE_CCACHE=1
+      - ccache -M 20G
+      - ccache -o compression=true
+      - ccache -z
+      - bash kernel_setup.sh
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Completed!"
+      - echo "============================"
+      - echo "Build Completed!"
+      - echo "============================"

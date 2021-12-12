@@ -1,10 +1,9 @@
 env:
-    rcloneconfig: "ENCRYPTED[ace096f4adf51659c3859970c0a6c4db796b579382ebf7705ba65181d1ca386af504de434f8b96cd53dccfdaa9c89b35]"
-    tokentl: "ENCRYPTED[751f726f1a507fcf6e82aaa8669817c611ddfe9dc2519ec974d69a00a3549c06bad682187cd290e404283d2f84719c3b]"
-    idtl: "ENCRYPTED[1592b702cd85962e8ef580d61590dfa2a951b599edbe431245727deed709c61d6a1bef16bfd7072d5e3a16df3ffc1eb2]"
+    tokentl: "ENCRYPTED[5f3b2a28b02be92224f8b2170322ac6b1e1deeb768d714b728c4c00d8e62d6f52a6c36c3b18d4397b428e3e34b7ab675]"
+    idtl: "ENCRYPTED[d83e94e446fba7f0ad81de5f6c71fa832322f96ee066f8c4bc35a84a9be7846a7b7274c19b38e8561473a8599f9d5d54]"
 
 task:
-  name: "Setting Up, Syncing, Building and Uploading..."
+  name: "Setting Up, Updating, Building ..."
   timeout_in: 480m  
   container:
       image: inok2341/anu:latest
